@@ -4,9 +4,7 @@ import { IoLogoGithub, IoMail } from 'react-icons/io5';
 import Colors from './colors';
 import { FcGoogle } from 'react-icons/fc';
 import React from 'react';
-import { SiKakao } from 'react-icons/si';
 import { TinyColor } from '@ctrl/tinycolor';
-import { LogoNaver } from './icons/Naver';
 
 const BasicButton = ({ children, sx, ...others }) => (
   <Button
@@ -46,22 +44,6 @@ const SignInWithGitHubButton = ({ ...props }) => (
   </ColoredAuthButton>
 );
 
-const SignInWithKakaoButton = ({ ...props }) => (
-  <ColoredAuthButton startIcon={<SiKakao />} backgroundcolor={Colors.Brands.Kakao} {...props}>
-    Sign in with Kakao
-  </ColoredAuthButton>
-);
-
-const SignInWithNaverButton = ({ ...props }) => (
-  <ColoredAuthButton
-    startIcon={<LogoNaver invert={true} />}
-    foregroundcolor="#ffffff"
-    backgroundcolor={Colors.Brands.Naver}
-    {...props}
-  >
-    Sign in with NAVER
-  </ColoredAuthButton>
-);
 
 const SignInWithEmailButton = ({ ...props }) => (
   <ColoredAuthButton startIcon={<IoMail />} backgroundcolor={Colors.Email} {...props}>
@@ -73,8 +55,6 @@ export const OAuth = {
   BasicButton,
   GoogleButton: SignInWithGoogleButton,
   GitHubButton: SignInWithGitHubButton,
-  KakaoButton: SignInWithKakaoButton,
-  NaverButton: SignInWithNaverButton,
   EmailButton: SignInWithEmailButton,
 };
 

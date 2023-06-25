@@ -7,7 +7,6 @@ import { Card } from 'components/Card';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { OAuth } from 'components/Buttons';
-import { SiKakao, SiNaver } from 'react-icons/si';
 import { customAxios } from 'libs/customAxios';
 import qs from 'qs';
 import { useAuth } from 'providers/AuthProvider';
@@ -77,16 +76,6 @@ export const Login = () => {
     handleOAuth('/auth/github/authorize');
   };
 
-  const onClickKakaoButton = (evt) => {
-    evt.preventDefault();
-    handleOAuth('/auth/kakao/authorize');
-  };
-
-  const onClickNaverButton = (evt) => {
-    evt.preventDefault();
-    handleOAuth('/auth/naver/authorize');
-  };
-
   const onClickEmailButton = (evt) => {
     evt.preventDefault();
     showEmailLoginForm(true);
@@ -133,8 +122,6 @@ export const Login = () => {
           <Stack spacing={1}>
             <OAuth.GoogleButton onClick={onClickGoogleButton} />
             <OAuth.GitHubButton onClick={onClickGitHubButton} />
-            <OAuth.KakaoButton onClick={onClickKakaoButton} />
-            <OAuth.NaverButton onClick={onClickNaverButton} />
             <OAuth.EmailButton onClick={onClickEmailButton} />
           </Stack>
         )}
@@ -207,7 +194,7 @@ const CallbackGithub = () => {
   return (
     <CallbackOAuth
       api_callback_url="/auth/github/callback"
-      icon={<FaGithub />}
+      icon={<FaGithub style={{ fill: Colors.Brands.GitHub }} />}
       error_message="Failed to authroize with GitHub"
     >
       <Typography>Waiting for GitHub Sign-in to complete...</Typography>
@@ -215,37 +202,12 @@ const CallbackGithub = () => {
   );
 };
 
-const CallbackKakao = () => {
-  return (
-    <CallbackOAuth
-      api_callback_url="/auth/kakao/callback"
-      icon={<SiKakao />}
-      error_message="Failed to authroize with Kakao"
-    >
-      <Typography>Waiting for Kakao Sign-in to complete...</Typography>
-    </CallbackOAuth>
-  );
-};
-
-const CallbackNaver = () => {
-  return (
-    <CallbackOAuth
-      api_callback_url="/auth/naver/callback"
-      icon={<SiNaver style={{ fill: Colors.Brands.Naver }} />}
-      error_message="Failed to authroize with NAVER"
-    >
-      <Typography>Waiting for NAVER Sign-in to complete...</Typography>
-    </CallbackOAuth>
-  );
-};
 
 export default {
   Login,
   Logout,
   Redirects: {
     Google: CallbackGoogle,
-    Github: CallbackGithub,
-    Kakao: CallbackKakao,
-    Naver: CallbackNaver,
+    Github: CallbackGithub
   },
 };
